@@ -340,14 +340,10 @@ docker exec -it sqlserver-tareas /opt/mssql-tools/bin/sqlcmd -S localhost -U sa 
 
 Este proyecto es parte de una prueba técnica.
 
-## 👤 Autor
+## 👤 Malgar-1324
 
-[Tu Nombre]
+## 📞 Contacto +569 36267114
 
-## 📞 Contacto
-
-Para preguntas o sugerencias, contactar a [tu-email@ejemplo.com]
+Para preguntas o sugerencias, contactar a [luiscarodev@gmail.com]
 
 ---
-
-⭐ Si te gustó este proyecto, no olvides darle una estrella!
