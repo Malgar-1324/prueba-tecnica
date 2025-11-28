@@ -102,6 +102,7 @@ prueba-tecnica/
 ### Para desarrollo móvil:
 - **Expo CLI** - `npm install -g expo-cli`
 - **Expo Go App** en tu dispositivo móvil ([iOS](https://apps.apple.com/app/expo-go/id982107779) / [Android](https://play.google.com/store/apps/details?id=host.exp.exponent))
+- **Puertos abiertos**: Asegúrate de que los puertos **8000** (Backend API) y **8081** (Expo Metro Bundler) estén abiertos en tu firewall
 
 ## 🚀 Instalación y Configuración
 
@@ -169,6 +170,33 @@ npm start
 ```
 
 Escanea el código QR con Expo Go en tu dispositivo móvil.
+
+### 6. Configurar Firewall (Importante para Mobile)
+
+**Windows**: Permite los puertos 8000 y 8081 en el Firewall:
+
+```powershell
+# Ejecutar como Administrador en PowerShell
+netsh advfirewall firewall add rule name="Backend API" dir=in action=allow protocol=TCP localport=8000
+netsh advfirewall firewall add rule name="Expo Metro" dir=in action=allow protocol=TCP localport=8081
+```
+
+**Mac/Linux**:
+```bash
+# macOS (si tienes firewall activo)
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --add $(which node)
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --unblockapp $(which node)
+
+# Linux (ufw)
+sudo ufw allow 8000/tcp
+sudo ufw allow 8081/tcp
+```
+
+**Verificar conectividad**:
+```bash
+# Desde otro dispositivo en la misma red
+curl http://TU_IP:8000/health
+```
 
 ## 💻 Uso
 
@@ -280,9 +308,22 @@ curl http://localhost:8000/health
 5. Editar y eliminar tareas
 
 ### Probar App Móvil
-1. Abrir Expo Go en tu dispositivo
-2. Escanear el código QR
-3. Probar todas las funcionalidades
+
+**Pre-requisitos**:
+- Dispositivo móvil y PC en la **misma red WiFi**
+- Puertos **8000** y **8081** abiertos en el firewall
+- IP correcta configurada en `mobile/src/api/tareasApi.js`
+
+**Pasos**:
+1. Verifica que el backend esté accesible: `curl http://localhost:8000/health`
+2. Inicia Expo: `cd mobile && npm start`
+3. Abre Expo Go en tu dispositivo
+4. Escanea el código QR
+5. Prueba todas las funcionalidades
+
+**Solución de problemas**:
+- Si no carga la app: Verifica que el puerto 8081 esté abierto
+- Si falla la API: Verifica que el puerto 8000 esté abierto y la IP sea correcta
 
 ## 🔧 Comandos Útiles
 
@@ -340,10 +381,14 @@ docker exec -it sqlserver-tareas /opt/mssql-tools/bin/sqlcmd -S localhost -U sa 
 
 Este proyecto es parte de una prueba técnica.
 
-## 👤 Malgar-1324
+## 👤 Autor
 
-## 📞 Contacto +569 36267114
+[Malgar-1324]
+
+## 📞 Contacto
+
++56 9 36267114
 
 Para preguntas o sugerencias, contactar a [luiscarodev@gmail.com]
 
----
+

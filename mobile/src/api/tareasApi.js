@@ -1,8 +1,14 @@
 import axios from 'axios';
 
-// Cambiar esta URL por la IP de tu máquina cuando pruebes en dispositivo físico
+// IMPORTANTE: Cambiar esta URL por la IP de tu máquina
+// Para encontrar tu IP:
+// - Windows: ejecuta 'ipconfig' en cmd y busca "Dirección IPv4"
+// - Mac/Linux: ejecuta 'ifconfig' y busca la IP en tu adaptador de red
 // Ejemplo: http://192.168.1.100:8000
-const API_URL = 'http://localhost:8000';
+
+// Si pruebas en Android Emulator, usa: http://10.0.2.2:8000
+// Si pruebas en iOS Simulator, usa: http://localhost:8000
+const API_URL = 'http://192.168.1.6:8000'; // CAMBIA ESTA IP por la tuya
 
 const api = axios.create({
   baseURL: API_URL,
