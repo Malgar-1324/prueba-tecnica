@@ -71,3 +71,7 @@ coverage/
 # OS
 Thumbs.db
 .DS_Store
+
+# Entregables
+entregables/
+*.zip
