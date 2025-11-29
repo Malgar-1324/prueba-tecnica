@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     padding: 20,
+    paddingBottom: 40, // Espacio extra para scroll
   },
   label: {
     fontSize: 16,

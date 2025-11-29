@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 20,
+    paddingBottom: 40, // Espacio extra para scroll
   },
   estadoBadge: {
     alignSelf: 'flex-start',

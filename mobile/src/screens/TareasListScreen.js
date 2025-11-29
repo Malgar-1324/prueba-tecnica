@@ -250,6 +250,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     padding: 10,
+    paddingBottom: 80, // Espacio para el FAB
   },
   tareaCard: {
     backgroundColor: '#fff',
