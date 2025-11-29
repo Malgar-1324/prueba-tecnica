@@ -138,11 +138,41 @@ Este comando levantará:
 
 ### 4. Inicializar la base de datos
 
-Espera unos segundos a que SQL Server esté listo, luego ejecuta:
+Espera unos segundos a que SQL Server esté listo (30-60 segundos), luego ejecuta **UNO** de estos comandos según tu sistema:
+
+**✅ MÉTODO FÁCIL - Script Automático (Recomendado):**
 
 ```bash
-docker exec -it sqlserver-tareas /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong@Passw0rd -i /docker-entrypoint-initdb.d/init.sql
+# Linux/Mac/Git Bash
+bash init-database.sh
+
+# Windows (CMD o PowerShell)
+init-database.bat
 ```
+
+**Método Manual - Opción 1 (Recomendado):**
+```bash
+docker exec sqlserver-tareas /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -C -i /docker-entrypoint-initdb.d/init.sql
+```
+
+**Método Manual - Opción 2 (versiones antiguas):**
+```bash
+docker exec sqlserver-tareas /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -i /docker-entrypoint-initdb.d/init.sql
+```
+
+**Método Manual - Opción 3 (Git Bash en Windows):**
+```bash
+winpty docker exec -it sqlserver-tareas //opt//mssql-tools18//bin//sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -C -i //docker-entrypoint-initdb.d//init.sql
+```
+
+**Método Manual - Opción 4 (siempre funciona):**
+```bash
+docker cp database/init.sql sqlserver-tareas:/tmp/init.sql
+docker exec sqlserver-tareas /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -C -i /tmp/init.sql
+```
+
+**Verificar que funcionó:**
+Deberías ver el mensaje: `Base de datos inicializada correctamente`
 
 ### 5. Configurar la aplicación móvil
 
